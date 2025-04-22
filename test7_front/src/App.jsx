@@ -13,18 +13,34 @@ function App() {
     const newTask = await APITasks.addTasks(title)
     setTasks([...tasks, newTask])
   }
-  const toggleTask = (id) => {
-    setTasks(tasks.map(task => task.id === id ? { ...task, completed: !task.completed } : task))
+  const complitedTasks = async (id) => {
+    const newTask = await APITasks.complitedTasks(id)
+    setTasks(newTask)
   }
+  const deleteTask = async (id) => {
+    const newTask = await APITasks.deleteTask(id)
+    setTasks(newTask)
+  }
+
+
+
   useEffect(() => {
     setterTask()
   }, []);
 
   return (
-    <div>
-      <h1>Список задач</h1>
-      <TaskForm onAddTask={addTask} />
-      <TaskList tasks={tasks} onToggleTask={toggleTask} />
+    <div className='bg-gray-700 w-screen h-screen flex flex-col justify-center items-center border '>
+      <div className=' border-white border-[5px] p-[20px] rounded-[10px] '>
+        <h1 className='uppercase text-white font-bold text-[42px]  text-center'>Список задач</h1>
+        <TaskForm onAddTask={addTask} />
+        <TaskList
+          tasks={tasks}
+          complitedTasks={complitedTasks}
+          deleteTask={deleteTask}
+
+        />
+      </div>
+
     </div>
   );
 }

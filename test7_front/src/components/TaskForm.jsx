@@ -10,15 +10,23 @@ const TaskForm = ({ onAddTask }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="Название задачи"
-            />
-            <button type="submit">Добавить</button>
-        </form>
+        <div className=' border-b-[2px] border-white pt-[10px] '>
+            <form onSubmit={handleSubmit}>
+                <input
+                    className='uppercase text-white font-bold text-[22px] focus:border-none'
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="Название задачи"
+                />
+                <button
+                    className='uppercase text-white font-bold text-[22px] pl-[10px]'
+                    type="submit"
+                >
+                    Добавить
+                </button>
+            </form>
+        </div>
     )
 }
 
